@@ -6,6 +6,7 @@ Servo servoA, servoB, servoC, servoD;
 //Defining/Initialising Variables
 char iByte = 0;
 String inputString = "";
+bool LEDstate = false;
 
 //Defining a function, to return the numbers from the end of a command.
 int intExtract() {
@@ -33,31 +34,35 @@ void setup() {
 void loop() {
 	// put your main code here, to run repeatedly:
 
-	if (Serial.available() > 0) { //If serial is not available, then read the character to iByte
+	if (Serial.available() > 0) { //If there are bytes being transmitted over serial
 		iByte = Serial.read();
-		inputString += iByte; //Append ibyte to inputString
+		inputString += iByte; //Concatenate inputString with iByte
 	}
 	if (inputString[0] != 'a' && inputString[0] != 'b' && inputString[0] != 'c' && inputString[0] != 'd' && inputString[0] != '*') { //If invalid ident then reset
 		inputString = "";
 	}
-	if (inputString.length() >= 3) { //When you reach legnth 3 then work out the identifier for the servo. Then use intExtract to find the number
-		if (inputString[0] == 'a') {//Identifier a
+	if (inputString.length() >= 3) { //When you reach legnth 3 then work out the identifier for the servo. Then call intExtract to find the number
+		switch (inputString[0]) { //Switch checks what identifier is present
+		case 'a':
 			servoA.write(intExtract());
-		}
-		else if (inputString[0] == 'b') {//Identifier b
+			break;
+		case 'b':
 			servoB.write(intExtract());
-		}
-		else if (inputString[0] == 'c') {//Identifier c
+			break;
+		case 'c':
 			servoC.write(intExtract());
-		}
-		else if (inputString[0] == 'd') {//Identifier d
+			break;
+		case 'd':
 			servoD.write(intExtract());
-		}
-		else if (inputString[0] == '*') {//Identifier *
+			break;
+		case '*':
 			servoA.write(intExtract());
 			servoB.write(intExtract());
 			servoC.write(intExtract());
 			servoD.write(intExtract());
+			LEDstate = !LEDstate;
+			digitalWrite(LED_BUILTIN,LEDstate);
+			break;
 		}
 		inputString = "";
 	}
