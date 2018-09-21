@@ -7,8 +7,5 @@ ser.write('*'.encode())
 ser.write('9'.encode())
 ser.write('0'.encode())
 
-for i in range(0,10):
-    print(ser.readline())
-
 ser.close()
 print("Closed port")
