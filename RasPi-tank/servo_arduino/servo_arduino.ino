@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 //Defining Servo Names
-Servo servoA, servoB, servoC, servoD;
+Servo servoA, servoB, servoC, servoD, servoE, servoF;
 
 //Defining/Initialising Variables
 char iByte = 0;
@@ -29,6 +29,10 @@ void setup() {
 	servoC.write(0);
 	servoD.attach(6);
 	servoD.write(0);
+        servoE.attach(5);
+	servoE.write(0);
+        servoF.attach(5);
+	servoF.write(0);
 }
 
 void loop() {
@@ -38,7 +42,7 @@ void loop() {
 		iByte = Serial.read();
 		inputString += iByte; //Concatenate inputString with iByte
 	}
-	if (inputString[0] != 'a' && inputString[0] != 'b' && inputString[0] != 'c' && inputString[0] != 'd' && inputString[0] != '*') { //If invalid ident then reset
+	if (inputString[0] != 'a' && inputString[0] != 'b' && inputString[0] != 'c' && inputString[0] != 'd' && inputString[0] != 'e' && inputString[0] != 'f' && inputString[0] != '*') { //If invalid ident then reset
 		inputString = "";
 	}
 	if (inputString.length() >= 3) { //When you reach legnth 3 then work out the identifier for the servo. Then call intExtract to find the number
@@ -55,6 +59,12 @@ void loop() {
 		case 'd':
 			servoD.write(intExtract());
 			break;
+                case 'e':
+                        servoE.write(intExtract());
+                        break;
+                case 'f':
+                        servoF.write(intExtract());
+                        break;
 		case '*':
 			servoA.write(intExtract());
 			servoB.write(intExtract());
