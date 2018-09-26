@@ -29,9 +29,9 @@ void setup() {
 	servoC.write(0);
 	servoD.attach(6);
 	servoD.write(0);
-        servoE.attach(5);
+	servoE.attach(5);
 	servoE.write(0);
-        servoF.attach(5);
+	servoF.attach(4);
 	servoF.write(0);
 }
 
@@ -59,19 +59,21 @@ void loop() {
 		case 'd':
 			servoD.write(intExtract());
 			break;
-                case 'e':
-                        servoE.write(intExtract());
-                        break;
-                case 'f':
-                        servoF.write(intExtract());
-                        break;
+		case 'e':
+			servoE.write(intExtract());
+			break;
+		case 'f':
+			servoF.write(intExtract());
+			break;
 		case '*':
 			servoA.write(intExtract());
 			servoB.write(intExtract());
 			servoC.write(intExtract());
 			servoD.write(intExtract());
+			servoE.write(intExtract());
+			servoF.write(intExtract());
 			LEDstate = !LEDstate;
-			digitalWrite(LED_BUILTIN,LEDstate);
+			digitalWrite(LED_BUILTIN, LEDstate);
 			break;
 		}
 		inputString = "";
