@@ -18,7 +18,7 @@ int intExtract() {
 }
 
 void setup() {
-	Serial.begin(9600); // Starting the serial connection
+	Serial.begin(115200); // Starting the serial connection
 	digitalWrite(LED_BUILTIN, LOW); // Switching off the onboard LED (for debugging)
 	//Attaching and resetting servos
 	servoA.attach(9);

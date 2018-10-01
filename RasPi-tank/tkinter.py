@@ -3,8 +3,8 @@ import tkinter
 import serial
 import time
 
-ser = serial.Serial('COM5', 9600)
-print("Opened port at 9600 baud")
+ser = serial.Serial('/dev/ttyUSB0', 115200)
+print("Opened port at 115200 baud")
 time.sleep(1.5) #Wait for arduino to reset
 
 root = tkinter.Tk()
