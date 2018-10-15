@@ -3,7 +3,7 @@ import tkinter
 import serial
 import time
 
-ser = serial.Serial('/dev/ttyUSB0', 115200)
+ser = serial.Serial('COM3', 115200)
 print("Opened port at 115200 baud")
 time.sleep(1.5) #Wait for arduino to reset
 
@@ -20,7 +20,7 @@ class servo:
             self.inputString += "0"
             self.inputString = self.inputString[::-1]
         ##print(inputString)
-        ser.write('a'.encode()) #identifier
+        ser.write(self.designation.encode()) #identifier
         ser.write(self.inputString[0].encode()) #Value
         ser.write(self.inputString[1].encode()) #Value
         
@@ -51,7 +51,7 @@ scale.pack()
 
 serv = servo("A", 0)
 
-listOfServos = "ABCDEF"
+listOfServos = "abcdef"
 
 while True:
     for i in range(5):
