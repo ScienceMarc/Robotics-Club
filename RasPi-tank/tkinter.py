@@ -3,13 +3,13 @@ import tkinter
 import serial
 import time
 
-ser = serial.Serial('COM3', 115200)
+ser = serial.Serial('/dev/ttyUSB0', 115200)
 print("Opened port at 115200 baud")
 time.sleep(1.5) #Wait for arduino to reset
 
 root = tkinter.Tk()
 root.geometry("256x256")
-##making the object
+#Declairing the servo class with a motor method
 class servo:
     def __init__(self, designation, inputString):
         self.designation = designation
@@ -24,16 +24,7 @@ class servo:
         ser.write(self.inputString[0].encode()) #Value
         ser.write(self.inputString[1].encode()) #Value
         
-        
-
-varA = tkinter.IntVar()
-varB = tkinter.IntVar()
-varC = tkinter.IntVar()
-varD = tkinter.IntVar()
-varE = tkinter.IntVar()
-varF = tkinter.IntVar()
-
-variables = [varA,varB,varC,varD,varE,varF]
+variables = [tkinter.IntVar(),tkinter.IntVar(),tkinter.IntVar(),tkinter.IntVar(),tkinter.IntVar(),tkinter.IntVar()]
 
 #Tkinter stuff
 scale = Scale(root, variable = variables[0], from_=0, to=90, orient=HORIZONTAL)
@@ -54,7 +45,7 @@ serv = servo("A", 0)
 listOfServos = "abcdef"
 
 while True:
-    for i in range(5):
+    for i in range(6):
         serv.designation = listOfServos[i]
         print(serv.designation)
         serv.inputString = variables[i].get()
