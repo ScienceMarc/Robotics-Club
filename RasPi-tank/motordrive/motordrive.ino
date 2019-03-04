@@ -6,6 +6,7 @@
 void setup() {
   // put your setup code here, to run once:
   digitalWrite(RIGHTFORWARDS, HIGH);
+  digitalWrite(LEFTFORWARDS, HIGH);
 }
 
 void loop() {
